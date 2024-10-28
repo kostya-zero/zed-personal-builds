@@ -2,7 +2,7 @@ name: Zed Build
 on: 
   workflow_dispatch:
 env: 
-  RUSTFLAGS: '-C target-cpu=zen2 -C opt-level=3 -C link-arg=-z -C link-arg=pack-relative-relocs -C link-arg=-fuse-ld=lld -C linker=clang'
+  RUSTFLAGS: '-C target-cpu=znver2 -C opt-level=3 -C link-arg=-z -C link-arg=pack-relative-relocs'
 jobs:
   build:
     runs-on: ubuntu-latest
