@@ -18,17 +18,11 @@ jobs:
         with:
           toolchain: stable
           override: true
-          components: clippy
+          target: "x86_64-pc-windows-gnu"
       - name: "Install MinGW"
-        uses: msys2/setup-msys2@v2
+        uses: egor-tensin/setup-mingw@v2
         with:
-          update: true
-          install: >-
-            git
-            curl
-            clang
-            lld
-            llvm
+          platform: x64
       - name: "Build Zed for Windows"
         run: "cargo build --release --target x86_64-pc-windows-gnu"
       - name: "Upload Artifacts"
