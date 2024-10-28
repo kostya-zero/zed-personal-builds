@@ -1,0 +1,27 @@
+name: Zed Build
+on: 
+  workflow_dispatch:
+env: 
+  RUSTFLAGS: '-C target-cpu=zen2 -C opt-level=3 -C link-arg=-z -C link-arg=pack-relative-relocs'
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: "Checkout latest Zed commit"
+        uses: actions/checkout@v4
+        with:
+          repository:  'zed-industries/zed'
+          submodules: 'recursive'  
+      - name: "Setup Rust Toolchain"
+        uses: actions-rs/toolchain@v1.0.6
+        with:
+          toolchain: stable
+          override: true
+          components: clippy
+      - name: "Build Zed for Windows"
+        run: "cargo build --release"
+      - name: "Upload Artifacts"
+        uses: actions/upload-artifact@v4
+        with:
+          name: zed
+          path: target/release/Zed.exe
