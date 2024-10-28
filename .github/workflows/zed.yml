@@ -29,4 +29,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: zed
-          path: target/release/Zed.exe
+          path: target/x86_64-pc-windows-gnu/release/Zed.exe
